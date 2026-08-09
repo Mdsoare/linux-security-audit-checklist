@@ -30,7 +30,7 @@ Você pode executar os comandos individualmente no terminal conforme a necessida
 4. [Permissões de Arquivos e Binários Críticos](#4-permissões-de-arquivos-e-binários-críticos)
 5. [Conexões de Rede e Processos Ativos](#5-conexões-de-rede-e-processos-ativos)
 6. [Persistência e Agendamento de Tarefas](#6-persistência-e-agendamento-de-tarefas)
-7. [⚡ Suite Executável (One-Liner Consolidado)](#-suite-executável-one-liner-consolidado)
+7. [Suite Executável (One-Liner Consolidado)](#-suite-executável-one-liner-consolidado)
 
 ---
 
