@@ -149,3 +149,6 @@ echo -e "\n=== AUDITORIA CONCLUÍDA ==="
 ---
 ## 📜 Licença
 Este projeto está licenciado sob a Licença MIT. Sinta-se à vontade para utilizar, alterar e integrar às suas rotinas de hardening e auditoria de infraestrutura.
+
+---
+*Desenvolvido por **Marcelo Soares** | Especialista em Segurança da Informação e Computação Forense.*
