@@ -1,0 +1,12 @@
+# Configuração do markdownlint-cli2 para o repositório Linux Security Audit Checklist
+config:
+  # MD013/line-length: Desabilita a restrição estrita de 80 caracteres para permitir comandos e links longos
+  MD013: false
+  
+  # MD024/no-duplicate-heading: Permite títulos duplicados se estiverem em seções diferentes (opcional)
+  MD024: false
+
+# Ignorar pastas de sistema ou dependências se houverem
+ignores:
+  - "node_modules"
+  - "LICENSE"
