@@ -46,7 +46,9 @@ Coleta as informações básicas da máquina e do primeiro IP de rede ativo.
 echo "--- [CHECK] Host & Context ---"
 echo "Host: $(hostname) | IP: $(hostname -I 2>/dev/null | awk '{print $1}' || echo 'N/A')"
 ```
+
 ---
+
 ### 2. Usuários, Privilégios e Autenticação
 Verifica usuários com UID 0 (acesso root direto), contas sem senha e permissões do sudoers.
 
@@ -63,7 +65,9 @@ getent passwd | grep -E '/(ba|z|k|c)?sh$' | awk -F: '{printf "Usuário: %-15s Sh
 echo "--- [CHECK] Sudoers (NOPASSWD) ---"
 sudo grep -rI "NOPASSWD" /etc/sudoers /etc/sudoers.d/ 2>/dev/null || echo "OK: Nenhuma regra NOPASSWD explícita encontrada."
 ```
+
 ---
+
 ### 3. Auditoria Avançada de SSH (Hardening Baseline)
 O comando `sshd -T` lê as configurações efetivas e ativas em memória do serviço SSH (resolvendo `Includes`, diretivas implícitas e blocos `Match`).
 
@@ -81,6 +85,8 @@ sudo sshd -T 2>/dev/null | awk '
 '
 ```
 
+---
+
 #### 🔑 Chaves SSH Autorizadas
 Mapeia os usuários do sistema e verifica a existência de chaves públicas em `~/.ssh/authorized_keys`:
 
@@ -95,7 +101,9 @@ getent passwd | awk -F: '$3 >= 1000 || $3 == 0 {print $1 ":" $6}' | while IFS=: 
   }
 done
 ```
+
 ---
+
 ### 4. Permissões de Arquivos e Binários Críticos
 Mapeia arquivos editáveis no `/etc` e busca binários com bit SUID configurado que podem ser explorados para Privilege Escalation (GTFOBins).
 
@@ -108,6 +116,7 @@ find /etc -type f -perm -o+w 2>/dev/null
 ```
 
 ---
+
 ### 5. Conexões de Rede e Processos Ativos
 Lista sessões interativas ativas e portas TCP/UDP abertas aguardando conexões (`LISTEN`).
 
@@ -119,6 +128,7 @@ sudo ss -tulpn | grep LISTEN
 ```
 
 ---
+
 ### 6. Persistência e Agendamento de Tarefas
 Identifica rotinas automáticas no cron e timers gerenciados pelo systemd.
 
@@ -129,7 +139,9 @@ ls -la /etc/cron* /var/spool/cron/crontabs/ 2>/dev/null
 echo "--- [CHECK] Systemd Timers Ativos ---"
 systemctl list-timers --all --no-pager 2>/dev/null | head -n 15
 ```
+
 ---
+
 ## ⚡ Suite Executável (One-Liner Consolidado)
 Execute todas as verificações acima em um único comando formatado no terminal:
 
@@ -150,8 +162,10 @@ echo -e "\n=== AUDITORIA CONCLUÍDA ==="
 ```
 
 ---
+
 ## 📜 Licença
 Este projeto está licenciado sob a Licença MIT. Sinta-se à vontade para utilizar, alterar e integrar às suas rotinas de hardening e auditoria de infraestrutura.
 
 ---
+
 *Desenvolvido por **Marcelo Soares** | Especialista em Segurança da Informação e Computação Forense.*
