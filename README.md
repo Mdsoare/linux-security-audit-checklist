@@ -1,8 +1,11 @@
 # 🛡️ Linux Security Audit Checklist & One-Liners
 
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
-![Shell Script](https://img.shields.io/badge/shell-bash-blue.svg)
-![Target](https://img.shields.io/badge/target-Linux%20Hardening-red.svg)
+![Target Linux Hardening](https://img.shields.io/badge/target-Linux%20Hardening-red.svg)
+[![Docs Quality & Security](https://github.com/Mdsoare/linux-security-audit-checklist/actions/workflows/sec-scan.yml/badge.svg)](https://github.com/Mdsoare/linux-security-audit-checklist/actions/workflows/sec-scan.yml)
+[![Security Policy](https://img.shields.io/badge/security-policy-blue.svg)](SECURITY.md)
+
+---
 
 Uma coleção de comandos rápidos e *one-liners* em Shell Script voltados para a **auditoria de segurança, verificação de hardening e identificação de vetores de elevação de privilégios** em servidores Linux.
 

@@ -1,39 +1,30 @@
-name: DevSecOps Unified Security Scan
+name: Docs Quality & Security
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: ["main", "master"]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: ["main", "master"]
 
 permissions:
   actions: read
-  security-events: write
   contents: read
+  security-events: write
 
 jobs:
-  sast-shellcheck:
-    name: SAST (ShellCheck & PSScriptAnalyzer)
+  markdown-lint:
+    name: Lint Markdown Docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
 
-      - name: Run ShellCheck for Bash Scripts
-        uses: ludeeus/action-shellcheck@master
+      - name: Lint Markdown Files
+        uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff
         with:
-          ignore_paths: 'node_modules'
+          globs: "**/*.md"
 
-      - name: Run PSScriptAnalyzer for PowerShell Scripts
-        shell: pwsh
-        run: |
-          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
-          $results = Invoke-ScriptAnalyzer -Path . -Recurse
-          if ($results) {
-              $results | Format-Table -AutoSize
-              throw "Foram encontradas inconformidades pelo PSScriptAnalyzer."
-          }
-
-  sca-osv:
-    name: SCA (OSV-Scanner)
-    uses: "google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@v2.5.1"
+      - name: Gitleaks / Secret Scan
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
